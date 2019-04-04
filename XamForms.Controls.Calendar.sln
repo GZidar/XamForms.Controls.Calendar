@@ -20,11 +20,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7F90C722-448F-4D1C-AE29-531651759422}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		License.txt = License.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuspec", "Nuspec", "{041DBA58-8801-4588-AFF5-D2E17256AF67}"
 	ProjectSection(SolutionItems) = preProject
-		nuget\XamForms.Controls.Calendar.nuspec = nuget\XamForms.Controls.Calendar.nuspec
+		XamForms.Controls.Calendar.nuspec = XamForms.Controls.Calendar.nuspec
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamForms.Controls.Calendar", "XamForms.Controls.Calendar\XamForms.Controls.Calendar.csproj", "{1E9F350D-9077-43AD-9926-53088E91B31A}"
