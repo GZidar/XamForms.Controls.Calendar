@@ -51,12 +51,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XamForms.Controls.Calendar\XamForms.Controls.Calendar.csproj">
-      <Project>{da721ed1-72ed-43ef-b909-ff4f037d6549}</Project>
-      <Name>XamForms.Controls.Calendar</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.Animated.Vector.Drawable">
       <Version>28.0.0.1</Version>
     </PackageReference>
@@ -108,6 +102,12 @@
     <PackageReference Include="Xamarin.Forms">
       <Version>3.6.0.293080</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XamForms.Controls.Calendar\XamForms.Controls.Calendar.csproj">
+      <Project>{1e9f350d-9077-43ad-9926-53088e91b31a}</Project>
+      <Name>XamForms.Controls.Calendar</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

@@ -82,12 +82,8 @@
       <Name>XamForms.Controls.Calendar.Droid</Name>
     </ProjectReference>
     <ProjectReference Include="..\CalendarDemo\CalendarDemo.csproj">
+      <Project>{24a0e42c-402b-4bbd-8e71-642960f11121}</Project>
       <Name>CalendarDemo</Name>
-      <Project>{E20B9FA0-D846-47A9-9ECE-FF6D426104BF}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\XamForms.Controls.Calendar\XamForms.Controls.Calendar.csproj">
-      <Project>{DA721ED1-72ED-43EF-B909-FF4F037D6549}</Project>
-      <Name>XamForms.Controls.Calendar</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
