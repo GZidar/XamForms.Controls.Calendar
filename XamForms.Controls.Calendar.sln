@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamForms.Controls.Calendar.Droid", "XamForms.Controls.Calendar.Droid\XamForms.Controls.Calendar.Droid.csproj", "{4F9925E4-91B2-4017-A750-38726100BD44}"
 EndProject
@@ -28,6 +28,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendarDemo", "Example\CalendarDemo\CalendarDemo\CalendarDemo.csproj", "{E20B9FA0-D846-47A9-9ECE-FF6D426104BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamForms.Controls.Calendar.Windows", "XamForms.Controls.Calendar.Windows\XamForms.Controls.Calendar.Windows.csproj", "{A3D6D889-986A-4639-B6AD-C42E8EA3F674}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7F90C722-448F-4D1C-AE29-531651759422}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,30 +110,30 @@ Global
 		{4F9925E4-91B2-4017-A750-38726100BD44}.Release|x64.Build.0 = Release|Any CPU
 		{4F9925E4-91B2-4017-A750-38726100BD44}.Release|x86.ActiveCfg = Release|Any CPU
 		{4F9925E4-91B2-4017-A750-38726100BD44}.Release|x86.Build.0 = Release|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|Any CPU.ActiveCfg = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|Any CPU.Build.0 = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|ARM.ActiveCfg = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|ARM.Build.0 = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|iPhone.ActiveCfg = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|iPhone.Build.0 = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|iPhoneSimulator.ActiveCfg = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|iPhoneSimulator.Build.0 = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|x64.ActiveCfg = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|x64.Build.0 = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|x86.ActiveCfg = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|x86.Build.0 = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|Any CPU.ActiveCfg = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|Any CPU.Build.0 = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|ARM.ActiveCfg = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|ARM.Build.0 = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|iPhone.ActiveCfg = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|iPhone.Build.0 = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|iPhoneSimulator.ActiveCfg = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|iPhoneSimulator.Build.0 = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|x64.ActiveCfg = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|x64.Build.0 = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|x86.ActiveCfg = AppStore|Any CPU
-		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|x86.Build.0 = AppStore|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|Any CPU.ActiveCfg = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|Any CPU.Build.0 = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|ARM.ActiveCfg = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|ARM.Build.0 = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|iPhoneSimulator.Build.0 = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|x64.ActiveCfg = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|x64.Build.0 = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|x86.ActiveCfg = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Ad-Hoc|x86.Build.0 = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|Any CPU.ActiveCfg = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|Any CPU.Build.0 = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|ARM.ActiveCfg = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|ARM.Build.0 = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|iPhoneSimulator.Build.0 = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|x64.ActiveCfg = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|x64.Build.0 = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|x86.ActiveCfg = Release|Any CPU
+		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.AppStore|x86.Build.0 = Release|Any CPU
 		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AFDA59E-C3AF-4848-8C1F-674932E118FF}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -712,5 +717,8 @@ Global
 		{FA5D0E83-C2DE-4E68-94A9-CFF9BD2123AB} = {7D9236BA-96AB-491B-9234-42757EA56EBE}
 		{163E54C9-CA16-4854-ACF4-447CC631A550} = {7D9236BA-96AB-491B-9234-42757EA56EBE}
 		{E20B9FA0-D846-47A9-9ECE-FF6D426104BF} = {7D9236BA-96AB-491B-9234-42757EA56EBE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5227ED62-513C-4911-BD33-7DA9EF97DD0D}
 	EndGlobalSection
 EndGlobal
