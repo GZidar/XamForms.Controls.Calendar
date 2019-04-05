@@ -9,10 +9,12 @@ namespace CalendarDemo
     public class App : Application
     {
         Calendar calendar;
-        CalendarVM _vm;
+        //CalendarVM _vm;
 
         public App()
         {
+            var fred = new Calendar();
+
             calendar = new Calendar
             {
                 MaxDate = DateTime.Now.AddDays(30),
@@ -22,10 +24,10 @@ namespace CalendarDemo
                 DisableAllDates = false,
                 WeekdaysShow = true,
                 ShowNumberOfWeek = false,
-                BorderWidth = 1,
+                BorderWidth = 0,
                 //BorderColor = Color.Transparent,
                 OuterBorderWidth = 0,
-                SelectedBorderWidth = 1,
+                SelectedBorderWidth = 0,
                 ShowNumOfMonths = 1,
                 EnableTitleMonthYearView = true,
                 WeekdaysTextColor = Color.Teal,
@@ -42,10 +44,10 @@ namespace CalendarDemo
                         {
                             Pattern = new List<Pattern>
                             {
-                                new Pattern{ WidthPercent = 1f, HightPercent = 0.25f, Color = Color.Red},
-                                new Pattern{ WidthPercent = 1f, HightPercent = 0.25f, Color = Color.Purple},
-                                new Pattern{ WidthPercent = 1f, HightPercent = 0.25f, Color = Color.Green},
-                                new Pattern{ WidthPercent = 1f, HightPercent = 0.25f, Color = Color.Yellow,Text = "Test", TextColor=Color.DarkBlue, TextSize=11, TextAlign=TextAlign.Middle}
+                                new Pattern{ WidthPercent = 1f, HeightPercent = 0.25f, Color = Color.Red},
+                                new Pattern{ WidthPercent = 1f, HeightPercent = 0.25f, Color = Color.Purple},
+                                new Pattern{ WidthPercent = 1f, HeightPercent = 0.25f, Color = Color.Green},
+                                new Pattern{ WidthPercent = 1f, HeightPercent = 0.25f, Color = Color.Yellow,Text = "Test", TextColor=Color.DarkBlue, TextSize=11, TextAlign=TextAlign.Middle}
                             }
                         }
                     },
@@ -57,8 +59,8 @@ namespace CalendarDemo
                 }
             };
             /*
-			var white_row = new Pattern { WidthPercent = 1f, HightPercent = 0.04f, Color = Color.Transparent };
-			var white_col = new Pattern { WidthPercent = 0.04f, HightPercent = 1f, Color = Color.Transparent };
+			var white_row = new Pattern { WidthPercent = 1f, HeightPercent = 0.04f, Color = Color.Transparent };
+			var white_col = new Pattern { WidthPercent = 0.04f, HeightPercent = 1f, Color = Color.Transparent };
 
 
 			calendar.SpecialDates = new List<SpecialDate>{
@@ -71,43 +73,43 @@ namespace CalendarDemo
 					{
 						Pattern = new List<Pattern>
 							{
-							new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.Red, Text = "X", TextColor=Color.White, TextSize=11, TextAlign=TextAlign.Middle},
+							new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.Red, Text = "X", TextColor=Color.White, TextSize=11, TextAlign=TextAlign.Middle},
 								white_col,
-								new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.Gold, Text = "Y", TextColor=Color.White, TextSize=11, TextAlign=TextAlign.Middle},
+								new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.Gold, Text = "Y", TextColor=Color.White, TextSize=11, TextAlign=TextAlign.Middle},
 								white_col,
-								new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.Green, Text = "Z", TextColor=Color.White, TextSize=11, TextAlign=TextAlign.Middle},
+								new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.Green, Text = "Z", TextColor=Color.White, TextSize=11, TextAlign=TextAlign.Middle},
 								white_col,
-								new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.Purple,Text = "Q", TextColor=Color.White, TextSize=11, TextAlign=TextAlign.Middle},
+								new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.Purple,Text = "Q", TextColor=Color.White, TextSize=11, TextAlign=TextAlign.Middle},
 
 								white_row,white_row,white_row,white_row,white_row,white_row,white_row,
 
-								new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.Blue},
+								new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.Blue},
 								white_col,
-								new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.Chocolate},
+								new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.Chocolate},
 								white_col,
-								new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.Cyan},
+								new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.Cyan},
 								white_col,
-								new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.Fuchsia},
+								new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.Fuchsia},
 
 								white_row,white_row,white_row,white_row,white_row,white_row,white_row,
 
-								new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.Crimson},
+								new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.Crimson},
 								white_col,
-								new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.Aquamarine},
+								new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.Aquamarine},
 								white_col,
-								new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.OrangeRed},
+								new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.OrangeRed},
 								white_col,
-								new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.DarkOrchid},
+								new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.DarkOrchid},
 
 								white_row,white_row,white_row,white_row,white_row,white_row,white_row,
 
-								new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.Black},
+								new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.Black},
 								white_col,
-								new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.DeepSkyBlue},
+								new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.DeepSkyBlue},
 								white_col,
-								new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.DarkGoldenrod},
+								new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.DarkGoldenrod},
 								white_col,
-								new Pattern{ WidthPercent = 0.22f, HightPercent = 0.22f, Color = Color.Firebrick},
+								new Pattern{ WidthPercent = 0.22f, HeightPercent = 0.22f, Color = Color.Firebrick},
 							}
 						}
 					}
@@ -117,11 +119,11 @@ namespace CalendarDemo
             {
                 System.Diagnostics.Debug.WriteLine(calendar.SelectedDates);
             };
-            _vm = new CalendarVM();
-            var c2 = new CalendarXamlView();
+            //_vm = new CalendarVM();
+            //var c2 = new CalendarXamlView();
             //calendar.SetBinding(Calendar.DateCommandProperty, nameof(_vm.DateChosen));
             //calendar.SetBinding(Calendar.SpecialDatesProperty, nameof(_vm.Attendances));
-            c2.BindingContext = _vm;
+            //c2.BindingContext = _vm;
 
             // The root page of your application
             MainPage = new ContentPage
@@ -134,7 +136,8 @@ namespace CalendarDemo
                         Padding = new Thickness(5, Device.RuntimePlatform == Device.iOS ? 25 : 5, 5, 5),
                         Children =
                         {
-                            calendar//,c2
+                            calendar//,
+                            //c2
                         }
                     }
                 }
@@ -156,7 +159,7 @@ namespace CalendarDemo
 
             dates.Add(specialDate);
 
-            _vm.Attendances = new ObservableCollection<SpecialDate>(dates);
+            //_vm.Attendances = new ObservableCollection<SpecialDate>(dates);
             calendar.SelectedDate = (DateTime.Now);
 
         }

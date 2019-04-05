@@ -12,12 +12,6 @@ msbuild XamForms.Controls.Calendar/XamForms.Controls.Calendar.csproj %buildargs%
 msbuild XamForms.Controls.Calendar.Droid/XamForms.Controls.Calendar.Droid.csproj %buildargs%
 msbuild XamForms.Controls.Calendar.iOS/XamForms.Controls.Calendar.iOS.csproj %buildargs%
 
-echo Building CalendarDemo...
-
-msbuild Example/CalendarDemo/CalendarDemo/CalendarDemo.csproj %buildargs%
-msbuild Example/CalendarDemo/CalendarDemo.Droid/CalendarDemo.Droid.csproj %buildargs%
-msbuild Example/CalendarDemo/CalendarDemo.iOS/CalendarDemo.iOS.csproj %buildargs%
-
 echo Creating Nuget Packages...
 
 nuget pack FinalSprint.Controls.Calendar.nuspec

@@ -7,14 +7,14 @@
        <authors>RebeccaXam, FinalSprint</authors>
        <owners>FinalSprint</owners>
        <license type="file">License.txt</license>
-       <projectUrl>https://github.com/rebeccaXam/XamForms.Controls.Calendar</projectUrl>
+       <projectUrl>https://github.com/GZidar/XamForms.Controls.Calendar</projectUrl>
        <iconUrl>https://raw.githubusercontent.com/rebeccaXam/XamForms.Controls.Calendar/master/icon.png</iconUrl>
        <requireLicenseAcceptance>false</requireLicenseAcceptance>
        <description>
            Custom calendar control for Xamarin.Forms.
            Customizable border thickness, color, background colors and formats.
            Version 1.0.8 or lower Built against: 2.1.0.6521
-           Version 1.1.0 to 1.1.1 Built against: 2.3.4.231
+           Version 1.1.0 to 1.1.1 Built against: 2.3.4.231 -> Forked from original project by RebeccaXam
            Version 1.2.0 and above Built against 3.6.0.293080
        </description>
        <summary>A Calendar control for Xamarin Forms.</summary>
@@ -81,8 +81,8 @@
      <file src="XamForms.Controls.Calendar/bin/Release/netstandard2.0/XamForms.Controls.Calendar.pdb" target="lib/netstandard2.0/XamForms.Controls.Calendar.pdb" />
 
      <!--Core PCL-->
-     <file src="XamForms.Controls.Calendar/bin/Release/netstandard2.0/XamForms.Controls.Calendar.dll" target="lib/portable-win+net45+wp80+win81+wpa81/XamForms.Controls.Calendar.dll" />
-     <file src="XamForms.Controls.Calendar/bin/Release/netstandard2.0/XamForms.Controls.Calendar.pdb" target="lib/portable-win+net45+wp80+win81+wpa81/XamForms.Controls.Calendar.pdb" />
+     <file src="XamForms.Controls.Calendar/bin/Release/net461/XamForms.Controls.Calendar.dll" target="lib/portable-win+net461/XamForms.Controls.Calendar.dll" />
+     <file src="XamForms.Controls.Calendar/bin/Release/net461/XamForms.Controls.Calendar.pdb" target="lib/portable-win+net461/XamForms.Controls.Calendar.pdb" />
 
      <!--Xamarin.Android-->
      <file src="XamForms.Controls.Calendar.Droid/bin/Release/XamForms.Controls.Calendar.Droid.dll" target="lib/MonoAndroid10/XamForms.Controls.Calendar.Droid.dll" />

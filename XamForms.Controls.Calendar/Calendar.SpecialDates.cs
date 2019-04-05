@@ -10,7 +10,7 @@ namespace XamForms.Controls
 
 		public static readonly BindableProperty SpecialDatesProperty =
 			BindableProperty.Create(nameof(SpecialDates), typeof(ICollection<SpecialDate>), typeof(Calendar), new List<SpecialDate>(),
-									propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCalendar(CalandarChanges.MaxMin));
+									propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCalendar(CalendarChanges.MaxMin));
 
 		public ICollection<SpecialDate> SpecialDates
 		{
@@ -22,7 +22,7 @@ namespace XamForms.Controls
 
 		public void RaiseSpecialDatesChanged()
 		{
-			ChangeCalendar(CalandarChanges.MaxMin);
+			ChangeCalendar(CalendarChanges.MaxMin);
 		}
 
 		protected void SetButtonSpecial(CalendarButton button, SpecialDate special)

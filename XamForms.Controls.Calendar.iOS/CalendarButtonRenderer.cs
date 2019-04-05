@@ -76,7 +76,7 @@ namespace XamForms.Controls.iOS
                     var l = (int)Math.Ceiling(Control.Frame.Width * element.BackgroundPattern.GetLeft(i));
                     var t = (int)Math.Ceiling(Control.Frame.Height * element.BackgroundPattern.GetTop(i));
                     var w = (int)Math.Ceiling(Control.Frame.Width * element.BackgroundPattern.Pattern[i].WidthPercent);
-                    var h = (int)Math.Ceiling(Control.Frame.Height * element.BackgroundPattern.Pattern[i].HightPercent);
+                    var h = (int)Math.Ceiling(Control.Frame.Height * element.BackgroundPattern.Pattern[i].HeightPercent);
                     var r = new CGRect { X = l, Y = t, Width = w, Height = h };
                     g.FillRect(r);
                     DrawText(g, p, r);

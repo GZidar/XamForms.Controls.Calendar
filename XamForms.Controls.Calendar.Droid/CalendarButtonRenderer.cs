@@ -133,7 +133,7 @@ namespace XamForms.Controls.Droid
                 var l = (int)Math.Ceiling(Control.Width * element.BackgroundPattern.GetLeft(i));
                 var t = (int)Math.Ceiling(Control.Height * element.BackgroundPattern.GetTop(i));
                 var r = (int)Math.Ceiling(Control.Width * (1 - element.BackgroundPattern.Pattern[i].WidthPercent)) - l;
-                var b = (int)Math.Ceiling(Control.Height * (1 - element.BackgroundPattern.Pattern[i].HightPercent)) - t;
+                var b = (int)Math.Ceiling(Control.Height * (1 - element.BackgroundPattern.Pattern[i].HeightPercent)) - t;
                 layer.SetLayerInset(i, l, t, r, b);
             }
             layer.SetLayerInset(d.Count - 1, 0, 0, 0, 0);
