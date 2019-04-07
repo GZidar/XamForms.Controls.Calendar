@@ -9,12 +9,10 @@ namespace CalendarDemo
     public class App : Application
     {
         Calendar calendar;
-        //CalendarVM _vm;
+        CalendarVM _vm;
 
         public App()
         {
-            var fred = new Calendar();
-
             calendar = new Calendar
             {
                 MaxDate = DateTime.Now.AddDays(30),
@@ -25,7 +23,7 @@ namespace CalendarDemo
                 WeekdaysShow = true,
                 ShowNumberOfWeek = false,
                 BorderWidth = 0,
-                //BorderColor = Color.Transparent,
+                BorderColor = Color.Transparent,
                 OuterBorderWidth = 0,
                 SelectedBorderWidth = 0,
                 ShowNumOfMonths = 1,
@@ -119,11 +117,11 @@ namespace CalendarDemo
             {
                 System.Diagnostics.Debug.WriteLine(calendar.SelectedDates);
             };
-            //_vm = new CalendarVM();
-            //var c2 = new CalendarXamlView();
-            //calendar.SetBinding(Calendar.DateCommandProperty, nameof(_vm.DateChosen));
-            //calendar.SetBinding(Calendar.SpecialDatesProperty, nameof(_vm.Attendances));
-            //c2.BindingContext = _vm;
+            _vm = new CalendarVM();
+            var c2 = new CalendarXamlView();
+            calendar.SetBinding(Calendar.DateCommandProperty, nameof(_vm.DateChosen));
+            calendar.SetBinding(Calendar.SpecialDatesProperty, nameof(_vm.Attendances));
+            c2.BindingContext = _vm;
 
             // The root page of your application
             MainPage = new ContentPage
@@ -136,8 +134,8 @@ namespace CalendarDemo
                         Padding = new Thickness(5, Device.RuntimePlatform == Device.iOS ? 25 : 5, 5, 5),
                         Children =
                         {
-                            calendar//,
-                            //c2
+                            //calendar//,
+                            c2
                         }
                     }
                 }

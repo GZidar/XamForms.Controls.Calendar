@@ -155,7 +155,7 @@ namespace XamForms.Controls
         #region BorderWidth
 
         public static readonly BindableProperty BorderWidthProperty =
-            BindableProperty.Create(nameof(BorderWidth), typeof(int), typeof(Calendar), Device.RuntimePlatform == Device.iOS ? 1 : 3,
+            BindableProperty.Create(nameof(BorderWidth), typeof(int), typeof(Calendar), 1,
                                     propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeBorderWidth((int)newValue, (int)oldValue));
 
         protected void ChangeBorderWidth(int newValue, int oldValue)
@@ -179,7 +179,7 @@ namespace XamForms.Controls
         #region OuterBorderWidth
 
         public static readonly BindableProperty OuterBorderWidthProperty =
-            BindableProperty.Create(nameof(OuterBorderWidth), typeof(int), typeof(Calendar), Device.RuntimePlatform == Device.iOS ? 1 : 3,
+            BindableProperty.Create(nameof(OuterBorderWidth), typeof(int), typeof(Calendar), 0,
                                     propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).MainCalendars.ForEach((obj) => obj.Padding = (int)newValue));
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace XamForms.Controls
         #region BorderColor
 
         public static readonly BindableProperty BorderColorProperty =
-            BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(Calendar), Color.FromHex("#dddddd"),
+            BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(Calendar), Color.Transparent,
                                     propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeBorderColor((Color)newValue, (Color)oldValue));
 
         protected void ChangeBorderColor(Color newValue, Color oldValue)
@@ -472,7 +472,7 @@ namespace XamForms.Controls
             MainCalendars.Clear();
             for (var i = 0; i < ShowNumOfMonths; i++)
             {
-                var mainCalendar = new Grid { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, RowSpacing = GridSpace, ColumnSpacing = GridSpace, Padding = 1, BackgroundColor = BorderColor };
+                var mainCalendar = new Grid { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, RowSpacing = GridSpace, ColumnSpacing = GridSpace, Padding = 1, BackgroundColor = Color.Transparent };
                 mainCalendar.ColumnDefinitions = new ColumnDefinitionCollection { columDef, columDef, columDef, columDef, columDef, columDef, columDef };
                 mainCalendar.RowDefinitions = new RowDefinitionCollection { rowDef, rowDef, rowDef, rowDef, rowDef, rowDef };
 
@@ -497,7 +497,9 @@ namespace XamForms.Controls
                         b.Clicked += DateClickedEvent;
                         mainCalendar.Children.Add(b, c, r);
                     }
+
                 }
+
                 MainCalendars.Add(mainCalendar);
             }
         }
@@ -530,6 +532,7 @@ namespace XamForms.Controls
                 var start = CalendarStartDate(StartDate).Date;
                 var beginOfMonth = false;
                 var endOfMonth = false;
+                var hideLastRow = false;
                 for (int i = 0; i < buttons.Count; i++)
                 {
                     endOfMonth |= beginOfMonth && start.Day == 1;
@@ -554,6 +557,22 @@ namespace XamForms.Controls
 
                     buttons[i].IsOutOfMonth = !(beginOfMonth && !endOfMonth);
                     buttons[i].IsEnabled = ShowNumOfMonths == 1 || !buttons[i].IsOutOfMonth;
+
+                    if (i == 35 && buttons[i].IsOutOfMonth)
+                    {
+                        // this means that we are on the bottom row and none of the dates 
+                        // in it belong to the current month we should hide this row
+                        hideLastRow = true;
+                    }
+
+                    if (i >= 35 && hideLastRow)
+                    {
+                        buttons[i].IsVisible = false;
+                    }
+                    else
+                    {
+                        buttons[i].IsVisible = true;
+                    }
 
                     SpecialDate sd = null;
                     if (SpecialDates != null)

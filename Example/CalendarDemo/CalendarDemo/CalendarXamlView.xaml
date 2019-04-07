@@ -7,9 +7,6 @@
     <ContentView.Content>
         <controls:Calendar 
             Padding="10,0,10,0" 
-            SelectedBorderWidth="0"
-            BorderWidth="0"
-            DisabledBorderColor="Black"
             ShowNumberOfWeek="false"
             StartDay="Monday"
             TitleLabelTextColor="Green"

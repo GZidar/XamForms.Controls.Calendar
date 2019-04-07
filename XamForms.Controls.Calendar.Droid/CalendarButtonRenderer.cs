@@ -58,7 +58,14 @@ namespace XamForms.Controls.Droid
                         var drawable = new GradientDrawable();
                         drawable.SetShape(ShapeType.Rectangle);
                         var borderWidth = (int)Math.Ceiling(Element.BorderWidth);
-                        drawable.SetStroke(borderWidth > 0 ? borderWidth + 1 : borderWidth, Element.BorderColor.ToAndroid());
+                        if (borderWidth > 0)
+                        {
+                            drawable.SetStroke(borderWidth + 1, Element.BorderColor.ToAndroid());
+                        }
+                        else
+                        {
+                            drawable.SetStroke(0, Android.Graphics.Color.Transparent);
+                        }
                         drawable.SetColor(Element.BackgroundColor.ToAndroid());
                         Control.SetBackground(drawable);
                     }
