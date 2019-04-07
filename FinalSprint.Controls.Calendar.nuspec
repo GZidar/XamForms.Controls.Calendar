@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
    <metadata minClientVersion="2.8.1">
        <id>FinalSprint.Controls.Calendar</id>
-       <version>1.2.0</version>
+       <version>1.2.1</version>
        <title>Calendar Control Plugin for Xamarin.Forms</title>
        <authors>RebeccaXam, FinalSprint</authors>
        <owners>FinalSprint</owners>
@@ -11,11 +11,11 @@
        <iconUrl>https://raw.githubusercontent.com/rebeccaXam/XamForms.Controls.Calendar/master/icon.png</iconUrl>
        <requireLicenseAcceptance>false</requireLicenseAcceptance>
        <description>
-           Custom calendar control for Xamarin.Forms.
-           Customizable border thickness, color, background colors and formats.
-           Version 1.0.8 or lower Built against: 2.1.0.6521
-           Version 1.1.0 to 1.1.1 Built against: 2.3.4.231 -> Forked from original project by RebeccaXam
-           Version 1.2.0 and above Built against 3.6.0.293080
+         Custom calendar control for Xamarin.Forms.
+         Customizable border thickness, color, background colors and formats.
+         Version 1.0.8 or lower Built against: 2.1.0.6521
+         Version 1.1.0 to 1.1.1 Built against: 2.3.4.231 -> Forked from original project by RebeccaXam
+         Version 1.2.0 and above Built against 3.6.0.293080
        </description>
        <summary>A Calendar control for Xamarin Forms.</summary>
        <tags>xamarin, netstandard, uwp, uwa, android, xamarin.forms, ios, calendar, control</tags>
@@ -23,8 +23,12 @@
          <dependency id="Xamarin.Forms" version="3.6.0.293080" />
        </dependencies>
        <releaseNotes>
+         [1.2.1]
+         - Changed default UI to render without borders
          [1.2.0]
          - Changed from PCL to NetStandard 2.0
+         - Update Xamarin.Forms from 2.3.4.231 to 3.6.0.293080
+         - Android and iOS support only (at this stage)
          [1.1.1]
          - Fix SelectedDate does not select the date in the calendar when set
          - Fix Android SpecialDate background image ghost on wrong date when switching months
