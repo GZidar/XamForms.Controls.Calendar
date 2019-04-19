@@ -19,6 +19,7 @@ namespace XamForms.Controls
         public string FontFamily { get; set; }
         public int? BorderWidth { get; set; }
         public double? FontSize { get; set; }
+        public int? CornerRadius { get; set; }
         public bool Selectable { get; set; }
         /// <summary>
         /// Gets or sets the background image (only working on iOS and Android).

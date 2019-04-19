@@ -129,6 +129,37 @@ namespace XamForms.Controls
 
         #endregion
 
+        #region SelectedCornerRadius
+
+        public static readonly BindableProperty SelectedCornerRadiusProperty =
+            BindableProperty.Create(nameof(SelectedCornerRadius), typeof(int?), typeof(Calendar), null,
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeSelectedCornerRadius((int?)newValue, (int?)oldValue));
+
+        protected void ChangeSelectedCornerRadius(int? newValue, int? oldValue)
+        {
+            if (newValue == oldValue) return;
+            if (newValue.HasValue)
+            {
+                buttons.FindAll(b => b.IsSelected).ForEach(b => b.CornerRadius = newValue.Value);
+            }
+            else
+            {
+                buttons.FindAll(b => b.IsSelected).ForEach(b => b.CornerRadius = CornerRadius);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the border width of the selected date.
+        /// </summary>
+        /// <value>The width of the selected border.</value>
+        public int? SelectedCornerRadius
+        {
+            get { return (int?)GetValue(SelectedCornerRadiusProperty); }
+            set { SetValue(SelectedCornerRadiusProperty, value); }
+        }
+
+        #endregion
+
         #region SelectedTextColor
 
         public static readonly BindableProperty SelectedTextColorProperty =
@@ -236,6 +267,7 @@ namespace XamForms.Controls
                 var defaultFontFamily = button.IsOutOfMonth ? DatesFontFamilyOutsideMonth : DatesFontFamily;
                 button.IsEnabled = true;
                 button.IsSelected = true;
+                button.CornerRadius = SelectedCornerRadius ?? (special != null && special.CornerRadius.HasValue ? special.CornerRadius.Value : CornerRadius);
                 button.FontSize = SelectedFontSize;
                 button.BorderWidth = SelectedBorderWidth;
                 button.BorderColor = SelectedBorderColor;

@@ -14,6 +14,10 @@ namespace XamForms.Controls
             set { SetValue(DateProperty, value); }
         }
 
+        public int Row { get; set; } // the display row of this button
+
+        public int Column { get; set; } // the display column of this button
+
         public static readonly BindableProperty IsSelectedProperty =
             BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(CalendarButton), false);
 

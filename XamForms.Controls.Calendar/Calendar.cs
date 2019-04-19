@@ -219,6 +219,30 @@ namespace XamForms.Controls
 
         #endregion
 
+        #region CornerRadius
+
+        public static readonly BindableProperty CornerRadiusProperty =
+            BindableProperty.Create(nameof(CornerRadius), typeof(int), typeof(Calendar), 0,
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCornerRadius((int)newValue, (int)oldValue));
+
+        protected void ChangeCornerRadius(int newValue, int oldValue)
+        {
+            if (newValue == oldValue) return;
+            buttons.FindAll(b => !b.IsSelected && b.IsEnabled).ForEach(b => b.CornerRadius = newValue);
+        }
+
+        /// <summary>
+        /// Gets or sets the border width of the calendar.
+        /// </summary>
+        /// <value>The width of the border.</value>
+        public int CornerRadius
+        {
+            get { return (int)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+
+        #endregion
+
         #region DatesBackgroundColor
 
         public static readonly BindableProperty DatesBackgroundColorProperty =
@@ -228,7 +252,14 @@ namespace XamForms.Controls
         protected void ChangeDatesBackgroundColor(Color newValue, Color oldValue)
         {
             if (newValue == oldValue) return;
-            buttons.FindAll(b => b.IsEnabled && (!b.IsSelected || SelectedBackgroundColor != Color.Default)).ForEach(b => b.BackgroundColor = newValue);
+            if (DatesAlternateBackgroundColor.HasValue)
+            {
+                buttons.FindAll(b => b.IsEnabled && (!b.IsSelected || SelectedBackgroundColor != Color.Default) && b.Row % 2 != 0).ForEach(b => b.BackgroundColor = newValue);
+            }
+            else
+            {
+                buttons.FindAll(b => b.IsEnabled && (!b.IsSelected || SelectedBackgroundColor != Color.Default)).ForEach(b => b.BackgroundColor = newValue);
+            }
         }
 
         /// <summary>
@@ -239,6 +270,37 @@ namespace XamForms.Controls
         {
             get { return (Color)GetValue(DatesBackgroundColorProperty); }
             set { SetValue(DatesBackgroundColorProperty, value); }
+        }
+
+        #endregion
+
+        #region DatesAlternateBackgroundColor
+
+        public static readonly BindableProperty DatesAlternateBackgroundColorProperty =
+            BindableProperty.Create(nameof(DatesAlternateBackgroundColor), typeof(Color?), typeof(Calendar), null,
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeDatesAlternateBackgroundColor((Color?)newValue, (Color?)oldValue));
+
+        protected void ChangeDatesAlternateBackgroundColor(Color? newValue, Color? oldValue)
+        {
+            if (newValue == oldValue) return;
+            if (newValue.HasValue)
+            {
+                buttons.FindAll(b => b.IsEnabled && (!b.IsSelected || SelectedBackgroundColor != Color.Default) && b.Row % 2 == 0).ForEach(b => b.BackgroundColor = newValue.Value);
+            }
+            else
+            {
+                buttons.FindAll(b => b.IsEnabled && (!b.IsSelected || SelectedBackgroundColor != Color.Default) && b.Row % 2 == 0).ForEach(b => b.BackgroundColor = DatesBackgroundColor);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the background color of the normal dates.
+        /// </summary>
+        /// <value>The color of the dates background on the even rows.</value>
+        public Color? DatesAlternateBackgroundColor
+        {
+            get { return (Color?)GetValue(DatesAlternateBackgroundColorProperty); }
+            set { SetValue(DatesAlternateBackgroundColorProperty, value); }
         }
 
         #endregion
@@ -478,11 +540,15 @@ namespace XamForms.Controls
 
                 for (int r = 0; r < 6; r++)
                 {
+                    var rowBG = DatesBackgroundColor;
+
                     for (int c = 0; c < 7; c++)
                     {
                         buttons.Add(new CalendarButton
                         {
-                            CornerRadius = 0,
+                            Row = r + 1,
+                            Column = c + 1,
+                            CornerRadius = CornerRadius,
                             BorderWidth = BorderWidth,
                             BorderColor = BorderColor,
                             FontSize = DatesFontSize,
@@ -493,7 +559,14 @@ namespace XamForms.Controls
                             HorizontalOptions = LayoutOptions.FillAndExpand,
                             VerticalOptions = LayoutOptions.FillAndExpand
                         });
+
                         var b = buttons.Last();
+
+                        if (DatesAlternateBackgroundColor.HasValue && b.Row % 2 == 0)
+                        {
+                            b.BackgroundColor = DatesAlternateBackgroundColor.Value;
+                        }
+
                         b.Clicked += DateClickedEvent;
                         mainCalendar.Children.Add(b, c, r);
                     }
@@ -540,7 +613,18 @@ namespace XamForms.Controls
 
                     if (i < dayLabels.Count && WeekdaysShow && changes.HasFlag(CalendarChanges.StartDay))
                     {
-                        dayLabels[i].Text = start.ToString(WeekdaysFormat);
+                        if (WeekdaysFormat.ToLower() == "d1")
+                        {
+                            dayLabels[i].Text = start.ToString("ddd").Substring(0, 1);
+                        }
+                        else if (WeekdaysFormat.ToLower() == "d2")
+                        {
+                            dayLabels[i].Text = start.ToString("ddd").Substring(0, 2);
+                        }
+                        else
+                        {
+                            dayLabels[i].Text = start.ToString(WeekdaysFormat);
+                        }
                     }
 
                     ChangeWeekNumbers(start, i);
@@ -626,6 +710,7 @@ namespace XamForms.Controls
                 button.FontSize = DatesFontSize;
                 button.BorderWidth = BorderWidth;
                 button.BorderColor = BorderColor;
+                button.CornerRadius = CornerRadius;
                 button.FontFamily = button.IsOutOfMonth ? DatesFontFamilyOutsideMonth : DatesFontFamily;
                 button.BackgroundColor = button.IsOutOfMonth ? DatesBackgroundColorOutsideMonth : DatesBackgroundColor;
                 button.TextColor = button.IsOutOfMonth ? DatesTextColorOutsideMonth : DatesTextColor;

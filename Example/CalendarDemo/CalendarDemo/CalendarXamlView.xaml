@@ -8,7 +8,9 @@
         <controls:Calendar 
             Padding="10,0,10,0" 
             ShowNumberOfWeek="false"
+            WeekdaysFormat="d1"
             StartDay="Monday"
+            CornerRadius="20"
             TitleLabelTextColor="Green"
             TitleLeftArrowTextColor="Blue"
             SelectedDate="{Binding Date}"

@@ -21,6 +21,7 @@ namespace CalendarDemo
                 MultiSelectDates = false,
                 DisableAllDates = false,
                 WeekdaysShow = true,
+                WeekdaysFormat = "d1",
                 ShowNumberOfWeek = false,
                 BorderWidth = 0,
                 BorderColor = Color.Transparent,
@@ -29,7 +30,9 @@ namespace CalendarDemo
                 ShowNumOfMonths = 1,
                 EnableTitleMonthYearView = true,
                 WeekdaysTextColor = Color.Teal,
-                StartDay = DayOfWeek.Monday,
+                StartDay = DayOfWeek.Sunday,
+                SelectedCornerRadius = 20,
+                SelectedBackgroundColor = Color.Blue,
                 SelectedTextColor = Color.Fuchsia,
                 SpecialDates = new List<SpecialDate>{
                     new SpecialDate(DateTime.Now.AddDays(2)) { BackgroundColor = Color.Green, TextColor = Color.Accent, BorderColor = Color.Lime, BorderWidth=8, Selectable = true },
@@ -134,8 +137,8 @@ namespace CalendarDemo
                         Padding = new Thickness(5, Device.RuntimePlatform == Device.iOS ? 25 : 5, 5, 5),
                         Children =
                         {
-                            //calendar//,
-                            c2
+                            calendar//,
+                            //c2
                         }
                     }
                 }
