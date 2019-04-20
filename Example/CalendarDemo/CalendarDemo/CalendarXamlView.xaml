@@ -11,6 +11,7 @@
             WeekdaysFormat="d1"
             StartDay="Monday"
             CornerRadius="30"
+            ShowOutOfMonthDates="false"
             SelectedBackgroundColor="Azure"
             SelectedTextColor="White"
             WeekdaysBackgroundColor="Navy"

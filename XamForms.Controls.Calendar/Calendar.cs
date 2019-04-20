@@ -402,6 +402,24 @@ namespace XamForms.Controls
 
         #endregion
 
+        #region ShowOutOfMonthDates
+
+        public static readonly BindableProperty ShowOutOfMonthDatesProperty =
+            BindableProperty.Create(nameof(ShowOutOfMonthDates), typeof(bool), typeof(Calendar), true,
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCalendar(CalendarChanges.All));
+
+        /// <summary>
+        /// Gets or sets a the number of months to show
+        /// </summary>
+        /// <value>The start date.</value>
+        public bool ShowOutOfMonthDates
+        {
+            get { return (bool)GetValue(ShowOutOfMonthDatesProperty); }
+            set { SetValue(ShowOutOfMonthDatesProperty, value); }
+        }
+
+        #endregion
+
         #region ShowNumOfMonths
 
         public static readonly BindableProperty ShowNumOfMonthsProperty =
@@ -467,17 +485,10 @@ namespace XamForms.Controls
             for (var i = 0; i < rows.Count; i++)
             {
                 var row = rows[i];
-                //if (RowAlternateBackgroundColor.HasValue)
-                //{
-                    if ((i + 1) % 2 != 0)
-                    {
-                        row.Color = RowBackgroundColor;
-                    }
-                //}
-                //else
-                //{
-                //    row.Color = RowBackgroundColor;
-                //}
+                if ((i + 1) % 2 != 0)
+                {
+                    row.Color = RowBackgroundColor;
+                }
             }
         }
 
@@ -739,7 +750,14 @@ namespace XamForms.Controls
                     }
                     else
                     {
-                        buttons[i].IsVisible = true;
+                        if (buttons[i].IsOutOfMonth)
+                        {
+                            buttons[i].IsVisible = ShowOutOfMonthDates;
+                        }
+                        else
+                        {
+                            buttons[i].IsVisible = true;
+                        }
                         rows.Last().IsVisible = true;
                     }
 
