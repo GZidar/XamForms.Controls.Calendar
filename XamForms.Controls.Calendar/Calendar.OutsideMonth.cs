@@ -32,13 +32,20 @@ namespace XamForms.Controls
         #region DatesBackgroundColorOutsideMonth
 
         public static readonly BindableProperty DatesBackgroundColorOutsideMonthProperty =
-            BindableProperty.Create(nameof(DatesBackgroundColorOutsideMonth), typeof(Color), typeof(Calendar), Color.White,
+            BindableProperty.Create(nameof(DatesBackgroundColorOutsideMonth), typeof(Color), typeof(Calendar), Color.Transparent,
                                     propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeDatesBackgroundColorOutsideMonth((Color)newValue, (Color)oldValue));
 
         protected void ChangeDatesBackgroundColorOutsideMonth(Color newValue, Color oldValue)
         {
             if (newValue == oldValue) return;
-            buttons.FindAll(b => b.IsEnabled && !b.IsSelected && b.IsOutOfMonth).ForEach(b => b.BackgroundColor = newValue);
+            if (DatesAlternateBackgroundColorOutsideMonth.HasValue)
+            {
+                buttons.FindAll(b => b.IsEnabled && !b.IsSelected && b.IsOutOfMonth && b.Row % 2 != 0).ForEach(b => b.BackgroundColor = newValue);
+            }
+            else
+            {
+                buttons.FindAll(b => b.IsEnabled && !b.IsSelected && b.IsOutOfMonth).ForEach(b => b.BackgroundColor = newValue);
+            }
         }
 
         /// <summary>
@@ -49,6 +56,37 @@ namespace XamForms.Controls
         {
             get { return (Color)GetValue(DatesBackgroundColorOutsideMonthProperty); }
             set { SetValue(DatesBackgroundColorOutsideMonthProperty, value); }
+        }
+
+        #endregion
+
+        #region DatesAlternateBackgroundColorOutsideMonth
+
+        public static readonly BindableProperty DatesAlternateBackgroundColorOutsideMonthProperty =
+            BindableProperty.Create(nameof(DatesAlternateBackgroundColorOutsideMonth), typeof(Color?), typeof(Calendar), null,
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeDatesAlternateBackgroundColorOutsideMonth((Color?)newValue, (Color?)oldValue));
+
+        protected void ChangeDatesAlternateBackgroundColorOutsideMonth(Color? newValue, Color? oldValue)
+        {
+            if (newValue == oldValue) return;
+            if (newValue.HasValue)
+            {
+                buttons.FindAll(b => b.IsEnabled && !b.IsSelected && b.IsOutOfMonth && b.Row % 2 == 0).ForEach(b => b.BackgroundColor = newValue.Value);
+            }
+            else
+            {
+                buttons.FindAll(b => b.IsEnabled && !b.IsSelected && b.IsOutOfMonth && b.Row % 2 == 0).ForEach(b => b.BackgroundColor = DatesBackgroundColorOutsideMonth);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the background color of the dates not in the focused month.
+        /// </summary>
+        /// <value>The dates background color outside month.</value>
+        public Color? DatesAlternateBackgroundColorOutsideMonth
+        {
+            get { return (Color?)GetValue(DatesAlternateBackgroundColorOutsideMonthProperty); }
+            set { SetValue(DatesAlternateBackgroundColorOutsideMonthProperty, value); }
         }
 
         #endregion

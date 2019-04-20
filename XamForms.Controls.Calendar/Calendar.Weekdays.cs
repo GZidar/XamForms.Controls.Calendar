@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace XamForms.Controls
@@ -160,6 +161,33 @@ namespace XamForms.Controls
         }
 
         #endregion
+
+        //#region WeekdayRowBackgroundColor
+
+        //public static readonly BindableProperty WeekdayRowBackgroundColorProperty =
+        //    BindableProperty.Create(nameof(WeekdayRowBackgroundColor), typeof(Color), typeof(Calendar), Color.Transparent,
+        //                            propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeWeekdayRowBackgroundColor((Color)newValue, (Color)oldValue));
+
+        //protected void ChangeWeekdayRowBackgroundColor(Color newValue, Color oldValue)
+        //{
+        //    if (newValue == oldValue) return;
+        //    if (rows.Count > 0)
+        //    {
+        //        rows.First().Color = newValue;
+        //    }
+        //}
+
+        ///// <summary>
+        ///// Gets or sets the background color of the normal dates.
+        ///// </summary>
+        ///// <value>The color of the dates background on the even rows.</value>
+        //public Color WeekdayRowBackgroundColor
+        //{
+        //    get { return (Color)GetValue(WeekdayRowBackgroundColorProperty); }
+        //    set { SetValue(WeekdayRowBackgroundColorProperty, value); }
+        //}
+
+        //#endregion
 
         protected void ChangeWeekdays()
         {

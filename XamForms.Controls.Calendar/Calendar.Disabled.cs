@@ -90,13 +90,20 @@ namespace XamForms.Controls
         #region DisabledBackgroundColor
 
         public static readonly BindableProperty DisabledBackgroundColorProperty =
-            BindableProperty.Create(nameof(DisabledBackgroundColor), typeof(Color), typeof(Calendar), Color.Gray,
+            BindableProperty.Create(nameof(DisabledBackgroundColor), typeof(Color), typeof(Calendar), Color.Transparent,
                                     propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeDisabledBackgroundColor((Color)newValue, (Color)oldValue));
 
         protected void ChangeDisabledBackgroundColor(Color newValue, Color oldValue)
         {
             if (newValue == oldValue) return;
-            buttons.FindAll(b => !b.IsEnabled).ForEach(b => b.BackgroundColor = newValue);
+            if (DisabledAlternateBackgroundColor.HasValue)
+            {
+                buttons.FindAll(b => !b.IsEnabled && b.Row % 2 != 0).ForEach(b => b.BackgroundColor = newValue);
+            }
+            else
+            {
+                buttons.FindAll(b => !b.IsEnabled).ForEach(b => b.BackgroundColor = newValue);
+            }
         }
 
         /// <summary>
@@ -107,6 +114,37 @@ namespace XamForms.Controls
         {
             get { return (Color)GetValue(DisabledBackgroundColorProperty); }
             set { SetValue(DisabledBackgroundColorProperty, value); }
+        }
+
+        #endregion
+
+        #region DisabledAlternateBackgroundColor
+
+        public static readonly BindableProperty DisabledAlternateBackgroundColorProperty =
+            BindableProperty.Create(nameof(DisabledBackgroundColor), typeof(Color?), typeof(Calendar), null,
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeDisabledAlternateBackgroundColor((Color?)newValue, (Color?)oldValue));
+
+        protected void ChangeDisabledAlternateBackgroundColor(Color? newValue, Color? oldValue)
+        {
+            if (newValue == oldValue) return;
+            if (newValue.HasValue)
+            {
+                buttons.FindAll(b => !b.IsEnabled && b.Row % 2 == 0).ForEach(b => b.BackgroundColor = newValue.Value);
+            }
+            else
+            {
+                buttons.FindAll(b => !b.IsEnabled && b.Row % 2 == 0).ForEach(b => b.BackgroundColor = DisabledBackgroundColor);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the background color of the disabled dates.
+        /// </summary>
+        /// <value>The color of the disabled background.</value>
+        public Color? DisabledAlternateBackgroundColor
+        {
+            get { return (Color?)GetValue(DisabledAlternateBackgroundColorProperty); }
+            set { SetValue(DisabledAlternateBackgroundColorProperty, value); }
         }
 
         #endregion

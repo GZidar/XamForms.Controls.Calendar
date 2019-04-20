@@ -20,6 +20,7 @@ namespace CalendarDemo
                 //DisableDatesLimitToMaxMinRange = true,
                 MultiSelectDates = false,
                 DisableAllDates = false,
+                RowAlternateBackgroundColor = Color.ForestGreen,
                 WeekdaysShow = true,
                 WeekdaysFormat = "d1",
                 ShowNumberOfWeek = false,
@@ -29,6 +30,7 @@ namespace CalendarDemo
                 SelectedBorderWidth = 0,
                 ShowNumOfMonths = 1,
                 EnableTitleMonthYearView = true,
+                WeekdaysBackgroundColor = Color.BlanchedAlmond,
                 WeekdaysTextColor = Color.Teal,
                 StartDay = DayOfWeek.Sunday,
                 SelectedCornerRadius = 20,
@@ -137,8 +139,8 @@ namespace CalendarDemo
                         Padding = new Thickness(5, Device.RuntimePlatform == Device.iOS ? 25 : 5, 5, 5),
                         Children =
                         {
-                            calendar//,
-                            //c2
+                            //calendar//,
+                            c2
                         }
                     }
                 }
@@ -148,17 +150,19 @@ namespace CalendarDemo
         protected override void OnStart()
         {
             // Handle when your app starts
-            //calendar.SpecialDates.Add(new SpecialDate(DateTime.Now.AddDays(5)) { BackgroundColor = Color.Fuchsia, TextColor = Color.Accent, BorderColor = Color.Maroon, BorderWidth = 8 });
-            //calendar.SpecialDates.Add(new SpecialDate(DateTime.Now.AddDays(6)) { BackgroundColor = Color.Fuchsia, TextColor = Color.Accent, BorderColor = Color.Maroon, BorderWidth = 8 });
-            //calendar.RaiseSpecialDatesChanged();
+            calendar.SpecialDates.Add(new SpecialDate(DateTime.Now.AddDays(3)) { BackgroundColor = Color.Yellow, CornerRadius = 30 });
+            calendar.SpecialDates.Add(new SpecialDate(DateTime.Now.AddDays(5)) { BackgroundColor = Color.Fuchsia, TextColor = Color.Accent, BorderColor = Color.Maroon, BorderWidth = 8 });
+            calendar.SpecialDates.Add(new SpecialDate(DateTime.Now.AddDays(6)) { BackgroundColor = Color.Fuchsia, TextColor = Color.Accent, BorderColor = Color.Maroon, BorderWidth = 8 });
+            calendar.RaiseSpecialDatesChanged();
 
-            var dates = new List<SpecialDate>();
+            //var dates = new List<SpecialDate>();
 
-            var specialDate = new SpecialDate(new DateTime(2017, 04, 26));
-            specialDate.BackgroundColor = Color.Green;
-            specialDate.TextColor = Color.White;
+            //var specialDate = new SpecialDate(DateTime.Now.AddDays(2));
+            //specialDate.BackgroundColor = Color.Green;
+            //specialDate.TextColor = Color.White;
+            //specialDate.CornerRadius = 30;
 
-            dates.Add(specialDate);
+            //dates.Add(specialDate);
 
             //_vm.Attendances = new ObservableCollection<SpecialDate>(dates);
             calendar.SelectedDate = (DateTime.Now);

@@ -9,6 +9,7 @@ namespace XamForms.Controls
 {
     public partial class Calendar : ContentView
     {
+        List<BoxView> rows;
         List<CalendarButton> buttons;
         List<Grid> MainCalendars;
         List<Label> TitleLabels;
@@ -69,6 +70,7 @@ namespace XamForms.Controls
             TitleRightArrow.Clicked += RightArrowClickedEvent;
             dayLabels = new List<Label>(7);
             weekNumberLabels = new List<Label>(6);
+            rows = new List<BoxView>(7);
             buttons = new List<CalendarButton>(42);
             MainCalendars = new List<Grid>(1);
             WeekNumbers = new List<Grid>(1);
@@ -246,7 +248,7 @@ namespace XamForms.Controls
         #region DatesBackgroundColor
 
         public static readonly BindableProperty DatesBackgroundColorProperty =
-            BindableProperty.Create(nameof(DatesBackgroundColor), typeof(Color), typeof(Calendar), Color.White,
+            BindableProperty.Create(nameof(DatesBackgroundColor), typeof(Color), typeof(Calendar), Color.Transparent,
                                     propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeDatesBackgroundColor((Color)newValue, (Color)oldValue));
 
         protected void ChangeDatesBackgroundColor(Color newValue, Color oldValue)
@@ -453,6 +455,74 @@ namespace XamForms.Controls
 
         #endregion
 
+        #region RowBackgroundColor
+
+        public static readonly BindableProperty RowBackgroundColorProperty =
+            BindableProperty.Create(nameof(RowBackgroundColor), typeof(Color), typeof(Calendar), Color.Transparent,
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeRowBackgroundColor((Color)newValue, (Color)oldValue));
+
+        protected void ChangeRowBackgroundColor(Color newValue, Color oldValue)
+        {
+            if (newValue == oldValue) return;
+            for (var i = 0; i < rows.Count; i++)
+            {
+                var row = rows[i];
+                //if (RowAlternateBackgroundColor.HasValue)
+                //{
+                    if ((i + 1) % 2 != 0)
+                    {
+                        row.Color = RowBackgroundColor;
+                    }
+                //}
+                //else
+                //{
+                //    row.Color = RowBackgroundColor;
+                //}
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the background color of the normal dates.
+        /// </summary>
+        /// <value>The color of the dates background on the even rows.</value>
+        public Color RowBackgroundColor
+        {
+            get { return (Color)GetValue(RowBackgroundColorProperty); }
+            set { SetValue(RowBackgroundColorProperty, value); }
+        }
+
+        #endregion
+
+        #region RowAlternateBackgroundColor
+
+        public static readonly BindableProperty RowAlternateBackgroundColorProperty =
+            BindableProperty.Create(nameof(RowAlternateBackgroundColor), typeof(Color), typeof(Calendar), Color.Transparent,
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeRowAlternateBackgroundColor((Color)newValue, (Color)oldValue));
+
+        protected void ChangeRowAlternateBackgroundColor(Color newValue, Color oldValue)
+        {
+            if (newValue == oldValue) return;
+            for (var i = 0; i < rows.Count; i++)
+            {
+                if ((i + 1) % 2 == 0) continue;
+
+                var row = rows[i];
+                row.Color = newValue;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the background color of the normal dates.
+        /// </summary>
+        /// <value>The color of the dates background on the even rows.</value>
+        public Color RowAlternateBackgroundColor
+        {
+            get { return (Color)GetValue(RowAlternateBackgroundColorProperty); }
+            set { SetValue(RowAlternateBackgroundColorProperty, value); }
+        }
+
+        #endregion
+
         public DateTime CalendarStartDate(DateTime date)
         {
             var start = date;
@@ -504,10 +574,8 @@ namespace XamForms.Controls
                 weekNumbers.RowDefinitions = new RowDefinitionCollection { rowDef, rowDef, rowDef, rowDef, rowDef, rowDef };
                 weekNumbers.WidthRequest = NumberOfWeekFontSize * (Device.RuntimePlatform == Device.iOS ? 1.5 : 2.5);
 
-
                 for (int r = 0; r < 6; r++)
                 {
-
                     weekNumberLabels.Add(new Label
                     {
                         HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -530,6 +598,7 @@ namespace XamForms.Controls
         {
             var columDef = new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) };
             var rowDef = new RowDefinition { Height = new GridLength(1, GridUnitType.Star) };
+            rows.Clear();
             buttons.Clear();
             MainCalendars.Clear();
             for (var i = 0; i < ShowNumOfMonths; i++)
@@ -540,7 +609,21 @@ namespace XamForms.Controls
 
                 for (int r = 0; r < 6; r++)
                 {
-                    var rowBG = DatesBackgroundColor;
+                    var rowBG = RowBackgroundColor;
+                    if ((r+1) % 2 == 0)
+                    {
+                        rowBG = RowAlternateBackgroundColor;
+                    }
+
+                    var boxView = new BoxView
+                    {
+                        Color = rowBG
+                    };
+
+                    rows.Add(boxView);
+
+                    mainCalendar.Children.Add(boxView, 0, r);
+                    Grid.SetColumnSpan(boxView, 7);
 
                     for (int c = 0; c < 7; c++)
                     {
@@ -647,6 +730,7 @@ namespace XamForms.Controls
                         // this means that we are on the bottom row and none of the dates 
                         // in it belong to the current month we should hide this row
                         hideLastRow = true;
+                        rows.Last().IsVisible = false;
                     }
 
                     if (i >= 35 && hideLastRow)
@@ -656,6 +740,7 @@ namespace XamForms.Controls
                     else
                     {
                         buttons[i].IsVisible = true;
+                        rows.Last().IsVisible = true;
                     }
 
                     SpecialDate sd = null;
@@ -712,7 +797,14 @@ namespace XamForms.Controls
                 button.BorderColor = BorderColor;
                 button.CornerRadius = CornerRadius;
                 button.FontFamily = button.IsOutOfMonth ? DatesFontFamilyOutsideMonth : DatesFontFamily;
-                button.BackgroundColor = button.IsOutOfMonth ? DatesBackgroundColorOutsideMonth : DatesBackgroundColor;
+                if (DatesAlternateBackgroundColor.HasValue && button.Row % 2 == 0)
+                {
+                    button.BackgroundColor = button.IsOutOfMonth ? DatesBackgroundColorOutsideMonth : DatesAlternateBackgroundColor.Value;
+                }
+                else
+                {
+                    button.BackgroundColor = button.IsOutOfMonth ? DatesBackgroundColorOutsideMonth : DatesBackgroundColor;
+                }
                 button.TextColor = button.IsOutOfMonth ? DatesTextColorOutsideMonth : DatesTextColor;
                 button.FontAttributes = button.IsOutOfMonth ? DatesFontAttributesOutsideMonth : DatesFontAttributes;
                 button.IsEnabled = ShowNumOfMonths == 1 || !button.IsOutOfMonth;
