@@ -60,6 +60,7 @@ Then add the xaml:
 
 #### Contributors
 * [rebeccaXam](https://github.com/rebeccaXam)
+* [GZidar](https://github.com/GZidar)
 
 #### License
 https://github.com/rebeccaXam/XamForms.Controls.Calendar/blob/master/LICENSE
