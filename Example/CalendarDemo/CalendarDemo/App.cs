@@ -155,17 +155,62 @@ namespace CalendarDemo
             calendar.SpecialDates.Add(new SpecialDate(DateTime.Now.AddDays(6)) { BackgroundColor = Color.Fuchsia, TextColor = Color.Accent, BorderColor = Color.Maroon, BorderWidth = 8 });
             calendar.RaiseSpecialDatesChanged();
 
-            //var dates = new List<SpecialDate>();
+			FontImageSource redDotFontImageSource = new FontImageSource()
+			{
+				FontFamily = "monospace",
+				Glyph = "•",
+				Color = Color.Red,
+				Size = 50
+			};
 
-            //var specialDate = new SpecialDate(DateTime.Now.AddDays(2));
-            //specialDate.BackgroundColor = Color.Green;
-            //specialDate.TextColor = Color.White;
-            //specialDate.CornerRadius = 30;
+			FontImageSource nerdSmilyFontImageSource = new FontImageSource()
+			{
+				FontFamily = "Symbol",
+				Glyph = "🤓",
+				Size = 50
+			};
 
-            //dates.Add(specialDate);
 
-            //_vm.Attendances = new ObservableCollection<SpecialDate>(dates);
-            calendar.SelectedDate = (DateTime.Now);
+			var dates = new List<SpecialDate>();
+
+			var specialDate = new SpecialDate(DateTime.Now.AddDays(2));
+			specialDate.BackgroundColor = Color.Green;
+			specialDate.TextColor = Color.White;
+			specialDate.CornerRadius = 30;
+
+			var specialDate2 = new SpecialDate(DateTime.Now.AddDays(1));
+			specialDate2.BackgroundImage = redDotFontImageSource as FontImageSource;
+			specialDate2.TextColor = Color.White;
+			//specialDate2.BackgroundPattern = new BackgroundPattern(1)
+			//{
+			//	Pattern = new List<Pattern>
+			//	{
+			//		new Pattern{
+			//			WidthPercent = 1f,
+			//			HeightPercent = 1f,
+			//			Color = Color.Yellow,
+			//			Text = "X",
+			//			TextColor =Color.White,
+			//			TextSize =11,
+			//			TextAlign =TextAlign.Middle
+			//		},
+			//	}
+			//};
+
+			//Did not work together in Android
+			//specialDate2.BorderColor = Color.SkyBlue;
+			//specialDate2.BorderWidth = 1;
+
+			var specialDate3 = new SpecialDate(DateTime.Now.AddDays(-1));
+			specialDate3.BackgroundImage = nerdSmilyFontImageSource as FontImageSource;
+			specialDate3.TextColor = Color.Transparent;
+
+			dates.Add(specialDate);
+			dates.Add(specialDate2);
+			dates.Add(specialDate3);
+
+			_vm.Attendances = new ObservableCollection<SpecialDate>(dates);
+			calendar.SelectedDate = (DateTime.Now);
 
         }
 
