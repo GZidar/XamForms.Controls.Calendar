@@ -23,6 +23,8 @@
          <dependency id="Xamarin.Forms" version="3.6.0.293080" />
        </dependencies>
        <releaseNotes>
+         [1.3.3]
+         - Add Support to use FileImageSource as SpecialDate Background Image
          [1.3.2]
          - Fix for Xamarin Forms 4.0 iOS crash
          [1.3.1]
