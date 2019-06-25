@@ -56,8 +56,21 @@ namespace XamForms.Controls.iOS
         {
             var element = Element as CalendarButton;
             if (element == null || element.BackgroundImage == null) return;
-            var image = await GetImage(element.BackgroundImage);
-            Control.SetBackgroundImage(image, UIControlState.Normal);
+
+            UIImage image = null;
+
+            if (element.BackgroundImage is FileImageSource fileImageSource)
+            {
+                image = await GetImage(fileImageSource);
+            }
+            else if (element.BackgroundImage is FontImageSource fontImageSource)
+            {
+                image = await GetImage(fontImageSource);
+            }
+
+			if (image == null) return;
+
+			Control.SetBackgroundImage(image, UIControlState.Normal);
             Control.SetBackgroundImage(image, UIControlState.Disabled);
         }
 
@@ -93,6 +106,12 @@ namespace XamForms.Controls.iOS
         Task<UIImage> GetImage(FileImageSource image)
         {
             var handler = new FileImageSourceHandler();
+            return handler.LoadImageAsync(image);
+        }
+        
+        Task<UIImage> GetImage(FontImageSource image)
+        {
+            var handler = new FontImageSourceHandler();
             return handler.LoadImageAsync(image);
         }
 
