@@ -97,8 +97,22 @@ namespace XamForms.Controls.Droid
             if (element == null || element.BackgroundImage == null) return;
 
             var d = new List<Drawable>();
-            var image = await GetBitmap(element.BackgroundImage);
-            d.Add(new BitmapDrawable(Context.Resources, image));
+
+			Bitmap image = null;
+
+			if (element.BackgroundImage is FileImageSource fileImageSource)
+			{
+				image = await GetBitmap(fileImageSource);
+			}
+			else if (element.BackgroundImage is FontImageSource fontImageSource)
+			{
+				image = await GetBitmap(fontImageSource);
+			}
+
+			if (image == null) return;
+
+			
+			d.Add(new BitmapDrawable(Context.Resources, image));
             var drawable = new GradientDrawable();
             drawable.SetShape(ShapeType.Rectangle);
             var borderWidth = (int)Math.Ceiling(Element.BorderWidth);
@@ -147,12 +161,18 @@ namespace XamForms.Controls.Droid
             Control.SetBackground(layer);
         }
 
-        Task<Bitmap> GetBitmap(FileImageSource image)
-        {
-            var handler = new FileImageSourceHandler();
-            return handler.LoadImageAsync(image, this.Control.Context);
-        }
-    }
+		Task<Bitmap> GetBitmap(FontImageSource image)
+		{
+			var handler = new FontImageSourceHandler();
+			return handler.LoadImageAsync(image, this.Control.Context);
+		}
+
+		Task<Bitmap> GetBitmap(FileImageSource image)
+		{
+			var handler = new FileImageSourceHandler();
+			return handler.LoadImageAsync(image, this.Control.Context);
+		}
+	}
 
     public static class Calendar
     {
