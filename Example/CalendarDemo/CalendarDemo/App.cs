@@ -21,6 +21,7 @@ namespace CalendarDemo
                 MultiSelectDates = false,
                 DisableAllDates = false,
                 RowAlternateBackgroundColor = Color.ForestGreen,
+                MonthNavigationBackgroundColor = Color.Firebrick,
                 WeekdaysShow = true,
                 WeekdaysFormat = "d1",
                 ShowNumberOfWeek = false,

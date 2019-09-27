@@ -181,7 +181,11 @@ namespace XamForms.Controls
         public Double TitleLeftArrowFontSize
         {
             get { return TitleLeftArrow.FontSize; }
-            set { TitleLeftArrow.FontSize = value; }
+            set 
+            { 
+                TitleLeftArrow.FontSize = value;
+                TitleLeftArrow.WidthRequest = value * 2;
+            }
         }
 
         public static readonly BindableProperty TitleLeftArrowFontAttributesProperty = BindableProperty.Create(nameof(TitleLeftArrowFontAttributes), typeof(FontAttributes), typeof(Calendar), default(FontAttributes),
@@ -220,13 +224,13 @@ namespace XamForms.Controls
             set { TitleLeftArrow.CornerRadius = value; }
         }
 
-        public static readonly BindableProperty TitleLeftArrowImageProperty = BindableProperty.Create(nameof(TitleLeftArrowImage), typeof(FileImageSource), typeof(Calendar), default(FileImageSource),
-                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).TitleLeftArrow.Image = (FileImageSource)newValue);
+        public static readonly BindableProperty TitleLeftArrowImageProperty = BindableProperty.Create(nameof(TitleLeftArrowImage), typeof(ImageSource), typeof(Calendar), default(ImageSource),
+                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).TitleLeftArrow.ImageSource = (ImageSource)newValue);
 
-        public FileImageSource TitleLeftArrowImage
+        public ImageSource TitleLeftArrowImage
         {
-            get { return TitleLeftArrow.Image; }
-            set { TitleLeftArrow.Image = value; }
+            get { return TitleLeftArrow.ImageSource; }
+            set { TitleLeftArrow.ImageSource = value; }
         }
 
         public static readonly BindableProperty TitleLeftArrowIsEnabledCoreProperty = BindableProperty.Create(nameof(TitleLeftArrowIsEnabled), typeof(Boolean), typeof(Calendar), default(Boolean),
@@ -307,7 +311,11 @@ namespace XamForms.Controls
         public Double TitleRightArrowFontSize
         {
             get { return TitleRightArrow.FontSize; }
-            set { TitleRightArrow.FontSize = value; }
+            set 
+            { 
+                TitleRightArrow.FontSize = value;
+                TitleRightArrow.WidthRequest = value * 2;
+            }
         }
 
         public static readonly BindableProperty TitleRightArrowFontAttributesProperty = BindableProperty.Create(nameof(TitleRightArrowFontAttributes), typeof(FontAttributes), typeof(Calendar), default(FontAttributes),
@@ -346,13 +354,13 @@ namespace XamForms.Controls
             set { TitleRightArrow.CornerRadius = value; }
         }
 
-        public static readonly BindableProperty TitleRightArrowImageProperty = BindableProperty.Create(nameof(TitleRightArrowImage), typeof(FileImageSource), typeof(Calendar), default(FileImageSource),
-                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).TitleRightArrow.Image = (FileImageSource)newValue);
+        public static readonly BindableProperty TitleRightArrowImageProperty = BindableProperty.Create(nameof(TitleRightArrowImage), typeof(ImageSource), typeof(Calendar), default(ImageSource),
+                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).TitleRightArrow.ImageSource = (ImageSource)newValue);
 
-        public FileImageSource TitleRightArrowImage
+        public ImageSource TitleRightArrowImage
         {
-            get { return TitleRightArrow.Image; }
-            set { TitleRightArrow.Image = value; }
+            get { return TitleRightArrow.ImageSource; }
+            set { TitleRightArrow.ImageSource = value; }
         }
 
         public static readonly BindableProperty TitleRightArrowIsEnabledCoreProperty = BindableProperty.Create(nameof(TitleRightArrowIsEnabled), typeof(Boolean), typeof(Calendar), default(Boolean),
@@ -384,6 +392,43 @@ namespace XamForms.Controls
         /// Gets the right button of the month navigation.
         /// </summary>
         public StackLayout MonthNavigationLayout { get; protected set; }
+
+        #region MonthNavigationPadding
+
+        public static readonly BindableProperty MonthNavigationPaddingProperty =
+            BindableProperty.Create(nameof(MonthNavigationPadding), typeof(Thickness), typeof(Calendar), new Thickness(0),
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).MonthNavigationLayout.Padding = (Thickness)newValue);
+
+        /// <summary>
+        /// Gets or sets wether to show the month navigation.
+        /// </summary>
+        /// <value>The month navigation show.</value>
+        public Thickness MonthNavigationPadding
+        {
+            get { return (Thickness)GetValue(MonthNavigationPaddingProperty); }
+            set { SetValue(MonthNavigationPaddingProperty, value); }
+        }
+
+        #endregion
+
+
+        #region MonthNavigationBackgroundColor
+
+        public static readonly BindableProperty MonthNavigationBackgroundColorProperty =
+            BindableProperty.Create(nameof(MonthNavigationBackgroundColor), typeof(Color), typeof(Calendar), Color.Transparent,
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).MonthNavigationLayout.BackgroundColor = (Color)newValue);
+
+        /// <summary>
+        /// Gets or sets wether to show the month navigation.
+        /// </summary>
+        /// <value>The month navigation show.</value>
+        public Color MonthNavigationBackgroundColor
+        {
+            get { return (Color)GetValue(MonthNavigationBackgroundColorProperty); }
+            set { SetValue(MonthNavigationBackgroundColorProperty, value); }
+        }
+
+        #endregion
 
         #region MonthNavigationShow
 
@@ -435,7 +480,7 @@ namespace XamForms.Controls
             });
 
         /// <summary>
-        /// Gets or sets wether on Title pressed the month, year or normal view is showen
+        /// Gets or sets wether on Title pressed the month, year or normal view is shown
         /// </summary>
         /// <value>The weekdays show.</value>
         public bool EnableTitleMonthYearView

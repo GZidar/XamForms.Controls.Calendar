@@ -8,6 +8,13 @@
         <controls:Calendar 
             Padding="10,0,10,0" 
             ShowNumberOfWeek="false"
+            MonthNavigationBackgroundColor="BurlyWood"
+            TitleLabelFormat="MMMM yyyy"
+            TitleLabelFontAttributes="None"
+            TitleLeftArrowFontAttributes="None"
+            TitleRightArrowFontAttributes="None"
+            TitleLeftArrowBorderColor="White"
+            TitleLeftArrowBorderWidth="1"
             WeekdaysFormat="d1"
             StartDay="Monday"
             CornerRadius="30"

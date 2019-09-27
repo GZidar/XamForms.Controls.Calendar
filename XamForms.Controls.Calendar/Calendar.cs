@@ -21,9 +21,10 @@ namespace XamForms.Controls
         {
             TitleLeftArrow = new CalendarButton
             {
-                FontAttributes = FontAttributes.Bold,
+                FontAttributes = FontAttributes.None,
                 BackgroundColor = Color.Transparent,
                 FontSize = 24,
+                WidthRequest = 48,
                 Text = "❰",
                 TextColor = Color.FromHex("#c82727")
             };
@@ -32,16 +33,17 @@ namespace XamForms.Controls
                 FontSize = 24,
                 VerticalTextAlignment = TextAlignment.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
-                FontAttributes = FontAttributes.Bold,
+                FontAttributes = FontAttributes.None,
                 TextColor = Color.Black,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Text = ""
             };
             TitleRightArrow = new CalendarButton
             {
-                FontAttributes = FontAttributes.Bold,
+                FontAttributes = FontAttributes.None,
                 BackgroundColor = Color.Transparent,
                 FontSize = 24,
+                WidthRequest = 48,
                 Text = "❱",
                 TextColor = Color.FromHex("#c82727")
             };
@@ -50,7 +52,6 @@ namespace XamForms.Controls
                 Padding = 0,
                 VerticalOptions = LayoutOptions.Start,
                 Orientation = StackOrientation.Horizontal,
-                HeightRequest = Device.RuntimePlatform == Device.UWP ? 50 : 32,
                 Children = { TitleLeftArrow, TitleLabel, TitleRightArrow }
             };
             ContentView = new StackLayout
@@ -61,6 +62,7 @@ namespace XamForms.Controls
             MainView = new StackLayout
             {
                 Padding = 0,
+                Spacing = 0,
                 Orientation = StackOrientation.Vertical,
                 Children = { MonthNavigationLayout, ContentView }
             };
